@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+
+
+<div class="text-left my-4">
+    <h3>{{ post.title }}を編集</h3>
+</div>
+
+<form method="POST">
+    <label class="control-label" for="title">Title</label>
+    <input class="form-control" type="text" name="title" value={{ post.title }}>
+    <label class="control-label" for="detail">Detail</label>
+    <input class="form-control" type="text" name="detail" value={{ post.detail }}>
+    <label class="control-label" for="due">Due</label>
+    <input class="form-control" type="date" name="due" required value={{ post.due }}>
+    <input class="my-4 btn btn-outline-primary" type="submit" value="Edit">
+</form>
+
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">ホーム</a>
+    </li>
+</ul>
+
+{% endblock %}

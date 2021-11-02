@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+        
+        
+
+
+
+<div class="todolist">
+    <h3 class="my-4">
+        今日のTODOリスト
+
+    </h3>
+    {% if posts == [] %}
+        <p>今日のタスクはありません</p>
+    {% endif %}
+    {% for post in posts %}
+
+            <div class="alert alert-danger" role="alert">
+                    <h3>{{ post.title }}</h3>
+                    <p>期限：{{ post.due.date() }}</p>
+                    <p>詳細: {{ post.detail }}</p>
+                    <a href="/delete/{{ post.id }}">[delete]</a>
+                    <a href="/edit/{{ post.id }}">[edit]</a>
+
+            </div>
+
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}

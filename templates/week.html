@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="todolist">
+    <h3 class="my-4">
+        今週のTODOリスト
+
+    </h3>
+    {% for post in posts %}
+        {% if post.due < today%}
+            <div class="alert alert-danger" role="alert">
+                    <h3>{{ post.title }}</h3>
+                    <p>期限：{{ post.due.date() }}</p>
+                    <p>詳細: {{ post.detail }}</p>
+                    <a href="/delete/{{ post.id }}">[delete]</a>
+                    <a href="/edit/{{ post.id }}">[edit]</a>
+
+            </div>
+        {% else %}
+            <div class="alert alert-primary" role="alert">
+                <h3>{{ post.title }}</h3>
+                <p>期限：{{ post.due.date() }}</p>
+                <p>詳細: {{ post.detail }}</p>
+                <a href="/delete/{{ post.id }}">[delete]</a>
+                <a href="/edit/{{ post.id }}">[edit]</a>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+
+<div class="d-flex justify-content-end my-4">
+    <a class="btn btn-primary" href="{{ url_for('create') }}" role="button">新規TODO登録</a>
+</div>
+
+
+{% endblock %}
